@@ -3,6 +3,7 @@ import dotenv from 'dotenv'
 import connectDB from './src/config/database.js'
 import bodyParser from 'body-parser'
 import morgan from 'morgan'
+import routes from './src/routes/routes.js';
 import cors from 'cors'
 
 // Load environment variables from .env file
@@ -37,11 +38,8 @@ app.use(bodyParser.json())
 // Set up middleware to parse incoming JSON and urlencoded data
 app.use(express.urlencoded({ extended: false }))
 
-
-// Rendering index page when accessing the root URL
-app.get('/', (req, res) => {
-    res.render('index')
-})
+// Use the routes
+app.use('/', routes);
 
 /**
  * Define application routes
