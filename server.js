@@ -41,11 +41,6 @@ app.use(express.urlencoded({ extended: false }))
 // Use the routes
 app.use('/', routes);
 
-/**
- * Define application routes
- */
-// configureRoutes(app)
-
 app.use('/public', express.static('public'))
 
 // Start the server and listen on the specified port and hostname
