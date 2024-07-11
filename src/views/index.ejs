@@ -1,13 +1,179 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title></title>
+    <title>Family Information Form</title>
     <link rel="stylesheet" href="/public/css/style.css">
 </head>
-<body>
-    <h1 class="text-3xl font-bold underline">Welcome to !</h1>
-    <p class="mt-4 text-red-400">This is a basic Node.js app using EJS and Tailwind CSS.</p>
+
+<body class="bg-cover bg-center" style="background-image: url('/public/assets/bg-02\ 3.png');">
+    <div class="max-w-4xl mx-auto mt-16 p-8 bg-white bg-opacity-80 rounded-lg shadow-lg">
+        <h1 class="text-3xl font-bold text-center mb-6">Anappadikkal Family
+            Meet 2024</h1>
+        <form action="/submit-form" method="POST" enctype="multipart/form-data" id="familyForm">
+            <div class="mb-4">
+                <label for="picture" class="block text-lg font-semibold mb-2">Upload a picture:</label>
+                <input type="file" id="picture" name="picture" accept="image/*" class="border rounded-lg p-2 w-full" required>
+            </div>
+
+            <div class="mb-4">
+                <label for="name" class="block text-lg font-semibold mb-2">Name:</label>
+                <input type="text" id="name" name="name" class="border rounded-lg p-2 w-full" required>
+            </div>
+
+            <div class="mb-4">
+                <label class="block text-lg font-semibold mb-2">Age:</label>
+                <div class="flex gap-4">
+                    <label class="flex items-center">
+                        <input type="radio" id="age0-18" name="age" value="0-18" class="mr-2" required>
+                        <span>0-18</span>
+                    </label>
+                    <label class="flex items-center">
+                        <input type="radio" id="age18-50" name="age" value="18-50" class="mr-2" required>
+                        <span>18-50</span>
+                    </label>
+                    <label class="flex items-center">
+                        <input type="radio" id="age50+" name="age" value="50+" class="mr-2" required>
+                        <span>50+</span>
+                    </label>
+                </div>
+            </div>
+
+            <div class="mb-4">
+                <label class="block text-lg font-semibold mb-2">Gender:</label>
+                <div class="flex gap-4">
+                    <label class="flex items-center">
+                        <input type="radio" id="male" name="gender" value="Male" class="mr-2" required>
+                        <span>Male</span>
+                    </label>
+                    <label class="flex items-center">
+                        <input type="radio" id="female" name="gender" value="Female" class="mr-2" required>
+                        <span>Female</span>
+                    </label>
+                </div>
+            </div>
+
+            <div class="mb-4">
+                <label class="block text-lg font-semibold mb-2">Education:</label>
+                <div class="grid grid-cols-3 gap-4 mb-2">
+                    <label class="flex items-center">
+                        <input type="radio" id="lkg-ukg" name="education" value="LKG/UKG" class="mr-2" required>
+                        <span>LKG/UKG</span>
+                    </label>
+                    <label class="flex items-center">
+                        <input type="radio" id="sslc" name="education" value="SSLC" class="mr-2" required>
+                        <span>SSLC</span>
+                    </label>
+                    <label class="flex items-center">
+                        <input type="radio" id="plus2" name="education" value="+2" class="mr-2" required>
+                        <span>+2</span>
+                    </label>
+                </div>
+                <div class="grid grid-cols-3 gap-4">
+                    <label class="flex items-center">
+                        <input type="radio" id="degree" name="education" value="Degree" class="mr-2" required>
+                        <span>Degree</span>
+                    </label>
+                    <label class="flex items-center">
+                        <input type="radio" id="pg" name="education" value="PG" class="mr-2" required>
+                        <span>PG</span>
+                    </label>
+                    <label class="flex items-center">
+                        <input type="radio" id="phd" name="education" value="PHD" class="mr-2" required>
+                        <span>PHD</span>
+                    </label>
+                </div>
+            </div>
+
+            <div class="mb-4">
+                <label class="block text-lg font-semibold mb-2">Grand Father's name:</label>
+                <div class="flex flex-col gap-2 mb-2">
+                    <label class="flex items-center">
+                        <input type="radio" id="gf-mammu" name="grandFatherName" value="Mammu Haji" class="mr-2" required>
+                        <span>Mammu Haji</span>
+                    </label>
+                    <label class="flex items-center">
+                        <input type="radio" id="gf-write" name="grandFatherName" value="Write your Grand Father's name" class="mr-2" required>
+                        <span>Write your Grand Father's name</span>
+                    </label>
+                </div>
+                <input type="text" id="gfName" name="gfName" placeholder="Write your Grand Father's name" class="border rounded-lg p-2 w-full hidden">
+            </div>
+
+            <div class="mb-4">
+                <label class="block text-lg font-semibold mb-2">Grand Mother's name:</label>
+                <div class="flex flex-col gap-2 mb-2">
+                    <label class="flex items-center">
+                        <input type="radio" id="gm-fathimakutty" name="grandMotherName" value="Fathimakutty" class="mr-2" required>
+                        <span>Fathimakutty</span>
+                    </label>
+                    <label class="flex items-center">
+                        <input type="radio" id="gm-write" name="grandMotherName" value="Write your Grand Mother's name" class="mr-2" required>
+                        <span>Write your Grand Mother's name</span>
+                    </label>
+                </div>
+                <input type="text" id="gmName" name="gmName" placeholder="Write your Grand Mother's name" class="border rounded-lg p-2 w-full hidden">
+            </div>
+
+            <div class="mb-4">
+                <label class="block text-lg font-semibold mb-2">Family name:</label>
+                <div class="flex flex-col gap-2 mb-2">
+                    <label class="flex items-center">
+                        <input type="radio" id="family-anapaddikal" name="familyName" value="Anapaddikal Family" class="mr-2" required>
+                        <span>Anapaddikal Family</span>
+                    </label>
+                    <label class="flex items-center">
+                        <input type="radio" id="family-write" name="familyName" value="Write your Family name" class="mr-2" required>
+                        <span>Write your Family name</span>
+                    </label>
+                </div>
+                <input type="text" id="familyName" name="familyName" placeholder="Write your Family name" class="border rounded-lg p-2 w-full hidden">
+            </div>
+
+            <div class="mb-4">
+                <label for="address" class="block text-lg font-semibold mb-2">Address:</label>
+                <textarea id="address" name="address" rows="4" class="border rounded-lg p-2 w-full" required></textarea>
+            </div>
+
+            <div class="mb-4">
+                <button type="submit" class="w-full bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600">Submit</button>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var form = document.getElementById('familyForm');
+            var radios = form.querySelectorAll('input[type="radio"]');
+            radios.forEach(function(radio) {
+                radio.checked = false;
+            });
+
+            // Prevent browser auto-fill
+            form.reset();
+
+            // Show/hide custom input fields
+            document.querySelectorAll('input[name="grandFatherName"]').forEach(el => {
+                el.addEventListener('change', function () {
+                    document.getElementById('gfName').classList.toggle('hidden', this.value !== 'Write your Grand Father\'s name');
+                });
+            });
+
+            document.querySelectorAll('input[name="grandMotherName"]').forEach(el => {
+                el.addEventListener('change', function () {
+                    document.getElementById('gmName').classList.toggle('hidden', this.value !== 'Write your Grand Mother\'s name');
+                });
+            });
+
+            document.querySelectorAll('input[name="familyName"]').forEach(el => {
+                el.addEventListener('change', function () {
+                    document.getElementById('familyName').classList.toggle('hidden', this.value !== 'Write your Family name');
+                });
+            });
+        });
+    </script>
 </body>
+
 </html>
