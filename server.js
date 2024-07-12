@@ -42,7 +42,7 @@ app.use(express.urlencoded({ extended: false }))
 app.use('/', routes);
 
 app.use('/public', express.static('public'))
-app.use('/uploads', express.static('uploads')); 
+    app.use('/uploads', express.static('uploads')); 
 
 // Start the server and listen on the specified port and hostname
 app.listen(port, hostname, () => {

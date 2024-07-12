@@ -11,12 +11,23 @@
 </head>
 
 <body class="bg-cover bg-center" style="background-image: url('/public/assets/bg-02 3.png');">
-    <div class="relative mt-16 p-8 rounded-lg glassMorphism px-4 md:px-8">
+    <div id="successModal" class="modal rounded-e-2xl" style="display: none;">
+        <div class="modal-content">
+            <span class="close" id="closeModal">&times;</span>
+            <img id="vector " src="/public/assets/Vector.png" alt="Language Toggle"
+                class="absolute top-4 right-4 cursor-pointer w-12 h-12 mb-3">
+            <h2 class="text-[20px] font-bold leading-[50.32px] text-left mt-6">Submitted Successfully</h2>
+        </div>
+    </div>
+    <div class="mt-10" style="margin-top: 5em;">
         <img id="languageToggle" src="/public/assets/english.png" alt="Language Toggle"
-            class="absolute top-4 right-4 cursor-pointer w-12 h-12">
+            class="absolute top-4 right-4 cursor-pointer w-12 h-12" style="display:block; float: right;">
         <h1 id="title" class="text-3xl font-bold text-center mb-6 text-[#2C4A78]">Anappadikkal Family <br> Meet 2024
         </h1>
-        <form action="/submit-form" method="POST" enctype="multipart/form-data" id="familyForm">
+    </div>
+    <div class="relative mx-5 mt-16 rounded-lg glassMorphism px-4 py-4 md:px-10"
+        style="margin-left: 10rem; margin-right: 10rem; padding-top: 5em; padding-left: 10em; padding-right: 10em;">
+        <form id="familyForm" enctype="multipart/form-data">
             <div class="mb-4 bg-black w-full">
                 <label for="picture" id="uploadLabel"
                     class="block text-lg font-semibold mb-2 flex items-center cursor-pointer">
@@ -35,7 +46,7 @@
                 <label id="ageLabel" class="block text-lg font-semibold mb-2">Age:</label>
                 <div class="flex gap-4">
                     <label class="flex items-center">
-                        <input type="radio" id="age0-18" name="age"  value="0-18" class="mr-2" required>
+                        <input type="radio" id="age0-18" name="age" value="0-18" class="mr-2" required>
                         <span>0-18</span>
                     </label>
                     <label class="flex items-center">
@@ -151,128 +162,66 @@
             </div>
 
             <div class="mb-4 flex justify-center">
-                <button type="submit" id="submitButton"
-                    class="bg-[#2C4A78] text-white py-2 px-4 rounded-lg hover:bg-blue-600">Submit</button>
-            </div>
+                <div class="mb-4 flex justify-center">
+                    <button type="submit" id="submitButton"
+                        class="bg-[#2C4A78] text-white py-2 px-4 rounded-lg hover:bg-[#a5bfe7]">Submit</button>
+                </div>
         </form>
     </div>
-
+    <footer class="mt-8 mb-4 text-center text-xs text-[#414141]">
+        <p>
+            If you have any other personal urgent matters, please feel free to contact us at
+        </p>
+        <p> <a href="mailto:team@anappalikkal.com" class="underline hover:text-blue-700">team@anappalikkal.com</a>
+        </p>
+    </footer>
+    <script src="/public/scripts/index.js"></script>
     <script>
+        // Show the modal
+        function showModal() {
+            document.getElementById('successModal').style.display = 'block';
+        }
+
+        // Hide the modal
+        function closeModal() {
+            document.getElementById('successModal').style.display = 'none';
+        }
+
+        // Close modal when clicking on the close button
+        document.getElementById('closeModal').onclick = function () {
+            closeModal();
+        }
+
+        // Close modal when clicking outside of the modal
+        window.onclick = function (event) {
+            if (event.target === document.getElementById('successModal')) {
+                closeModal();
+            }
+        }
+
+
         document.addEventListener('DOMContentLoaded', function () {
-            var form = document.getElementById('familyForm');
-            var radios = form.querySelectorAll('input[type="radio"]');
-            radios.forEach(function (radio) {
-                radio.checked = false;
-            });
+            const form = document.getElementById('familyForm');
+            form.addEventListener('submit', function (e) {
+                e.preventDefault();
 
-            // Prevent browser auto-fill
-            form.reset();
+                const formData = new FormData(form);
 
-            // Show/hide custom input fields
-            document.querySelectorAll('input[name="grandFather"]').forEach(function (radio) {
-                radio.addEventListener('change', function () {
-                    document.getElementById('grandFatherName').style.display = this.value === 'other' ? 'block' : 'none';
-                });
-            });
-
-            document.querySelectorAll('input[name="grandMother"]').forEach(function (radio) {
-                radio.addEventListener('change', function () {
-                    document.getElementById('grandMotherName').style.display = this.value === 'other' ? 'block' : 'none';
-                });
-            });
-
-            document.querySelectorAll('input[name="family"]').forEach(function (radio) {
-                radio.addEventListener('change', function () {
-                    document.getElementById('familyName').style.display = this.value === 'other' ? 'block' : 'none';
-                });
-            });
-
-            // Language toggle functionality
-            document.getElementById('languageToggle').addEventListener('click', function () {
-                var currentLang = this.src.includes('english.png') ? 'english' : 'malayalam';
-                var newLang = currentLang === 'english' ? 'malayalam' : 'english';
-                var langData = {
-                    'english': {
-                        'title': 'Anappadikkal Family Meet 2024',
-                        'uploadText': 'Upload a picture:',
-                        'nameLabel': 'Name:',
-                        'ageLabel': 'Age:',
-                        'maleLabel': 'Male',
-                        'femaleLabel': 'Female',
-                        'educationLabel': 'Education:',
-                        'lkgLabel': 'LKG/UKG',
-                        'sslcLabel': 'SSLC',
-                        'plus2Label': '+2',
-                        'degreeLabel': 'Degree',
-                        'pgLabel': 'PG',
-                        'phdLabel': 'PHD',
-                        'gfLabel': 'Grand Father\'s name:',
-                        'gfMammuLabel': 'Mammu Haji',
-                        'gfWriteLabel': 'Write your Grand Father\'s name',
-                        'gmLabel': 'Grand Mother\'s name:',
-                        'gmFathimaLabel': 'Fathimakutty',
-                        'gmWriteLabel': 'Write your Grand Mother\'s name',
-                        'familyLabel': 'Family name:',
-                        'familyAnapaddikalLabel': 'Anapaddikal Family',
-                        'familyWriteLabel': 'Write your Family name',
-                        'addressLabel': 'Address:',
-                        'submitButton': 'Submit'
-                    },
-                    'malayalam': {
-                        'title': `അനപ്പടിക്കൽ കുടുംബം മീറ്റ് 2024`,
-                        'uploadText': 'ഒരു ചിത്രം അപ്‌ലോഡ് ചെയ്യുക:',
-                        'nameLabel': 'പേര്:',
-                        'ageLabel': 'പ്രായം:',
-                        'maleLabel': 'പുരുഷൻ',
-                        'femaleLabel': 'സ്ത്രീ',
-                        'educationLabel': 'വിദ്യാഭ്യാസം:',
-                        'lkgLabel': 'എൽകെജി/യുകെജി',
-                        'sslcLabel': 'എസ്‌എസ്എൽസി',
-                        'plus2Label': '+2',
-                        'degreeLabel': 'ഡിഗ്രി',
-                        'pgLabel': 'പിജി',
-                        'phdLabel': 'പി‌എച്ച്‌ഡി',
-                        'gfLabel': 'മുത്തച്ഛൻ്റെ പേര്:',
-                        'gfMammuLabel': 'മമ്മു ഹാജി',
-                        'gfWriteLabel': 'താങ്കളുടെ മുത്തച്ഛൻ്റെ പേരെഴുത്തുക',
-                        'gmLabel': 'മുത്തശ്ശിയുടെ പേര്:',
-                        'gmFathimaLabel': 'ഫാത്തിമകുട്ടി',
-                        'gmWriteLabel': 'താങ്കളുടെ മുത്തശ്ശിയുടെ പേര് എഴുതുക',
-                        'familyLabel': 'കുടുംബത്തിന്റെ പേര്:',
-                        'familyAnapaddikalLabel': 'അനപ്പടിക്കൽ കുടുംബം',
-                        'familyWriteLabel': 'താങ്കളുടെ കുടുംബത്തിന്റെ പേര് എഴുതുക',
-                        'addressLabel': 'വിലാസം:',
-                        'submitButton': 'സമർപ്പിക്കുക'
-                    }
-                };
-
-                var newLangData = langData[newLang];
-                document.getElementById('title').textContent = newLangData.title;
-                document.getElementById('uploadText').textContent = newLangData.uploadText;
-                document.getElementById('nameLabel').textContent = newLangData.nameLabel;
-                document.getElementById('ageLabel').textContent = newLangData.ageLabel;
-                document.getElementById('maleLabel').textContent = newLangData.maleLabel;
-                document.getElementById('femaleLabel').textContent = newLangData.femaleLabel;
-                document.getElementById('educationLabel').textContent = newLangData.educationLabel;
-                document.getElementById('lkgLabel').textContent = newLangData.lkgLabel;
-                document.getElementById('sslcLabel').textContent = newLangData.sslcLabel;
-                document.getElementById('plus2Label').textContent = newLangData.plus2Label;
-                document.getElementById('degreeLabel').textContent = newLangData.degreeLabel;
-                document.getElementById('pgLabel').textContent = newLangData.pgLabel;
-                document.getElementById('phdLabel').textContent = newLangData.phdLabel;
-                document.getElementById('gfLabel').textContent = newLangData.gfLabel;
-                document.getElementById('gfMammuLabel').textContent = newLangData.gfMammuLabel;
-                document.getElementById('gfWriteLabel').textContent = newLangData.gfWriteLabel;
-                document.getElementById('gmLabel').textContent = newLangData.gmLabel;
-                document.getElementById('gmFathimaLabel').textContent = newLangData.gmFathimaLabel;
-                document.getElementById('gmWriteLabel').textContent = newLangData.gmWriteLabel;
-                document.getElementById('familyLabel').textContent = newLangData.familyLabel;
-                document.getElementById('familyAnapaddikalLabel').textContent = newLangData.familyAnapaddikalLabel;
-                document.getElementById('familyWriteLabel').textContent = newLangData.familyWriteLabel;
-                document.getElementById('addressLabel').textContent = newLangData.addressLabel;
-                document.getElementById('submitButton').textContent = newLangData.submitButton;
-
-                this.src = `/public/assets/${newLang}.png`;
+                fetch('/submit-form', {
+                    method: 'POST',
+                    body: formData
+                })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.success) {
+                            showModal();
+                        } else {
+                            alert('An error occurred while submitting the form');
+                        }
+                    })
+                    .catch(error => {
+                        alert('An error occurred while submitting the form.');
+                    });
             });
         });
     </script>
