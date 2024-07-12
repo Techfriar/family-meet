@@ -27,7 +27,7 @@ export const postFormData = async (req, res) => {
     // Prepare the email options
     const mailOptions = {
       from: process.env.GMAIL_USERNAME,
-      to: "abhy.r010@gmail.com", // Send the email to the admin
+      to: process.env.RECEIVER_MAIL, // Send the email to the admin
       subject: 'Anappadikkal Family Meet 2024',
       html: `
         <html>
@@ -75,7 +75,7 @@ export const postFormData = async (req, res) => {
     };
 
     // Send the email
-    await transporter.sendMail(mailOptions);
+   await transporter.sendMail(mailOptions);
     const response = { success: true, message: 'Form data received and saved successfully' };
     res.json(response);
   } catch (error) {
