@@ -13,6 +13,9 @@ body {
         background-image: url('/public/assets/bg-mobile.png');
         margin: 2rem !important;
     }
+    .custom-form-padding {
+        padding-top: 2em !important;
+    }
 }
 
 @media (min-width: 768px) {
@@ -22,8 +25,8 @@ body {
 
     .custom-form-padding {
         padding-top: 5em !important;
-        padding-left: 10em !important;
-        padding-right: 10em !important;
+        padding-left: 7em !important;
+        padding-right: 7em !important;
     }
 }
 
