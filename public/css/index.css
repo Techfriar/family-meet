@@ -123,6 +123,9 @@ body {
     border-top: 0.2px solid #cec9c9;
 }
 
+input[type="radio"]:checked {
+    accent-color: #2C4A78;
+}
 
 .modal {
     display: none;
@@ -186,8 +189,13 @@ body {
 
 
 @keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
 }
 
 .animate-spin {
