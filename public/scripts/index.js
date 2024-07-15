@@ -91,7 +91,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 'degreeLabel': 'ഡിഗ്രി',
                 'pgLabel': 'പിജി',
                 'phdLabel': 'പി‌എച്ച്‌ഡി',
-                'gfLabel': 'മുതൽപിതാവിന്റെ പേര്:',
+                'gfLabel': 'മുത്തച്ഛൻ്റെ പേര്:',
                 'gfMammuLabel': 'മമ്മു ഹാജി',
                 'gfWriteLabel': 'താങ്കളുടെ മുസ്‌ലിം പേരെഴുത്തുക',
                 'gmLabel': 'മുത്തശ്ശിയുടെ പേര്:',
