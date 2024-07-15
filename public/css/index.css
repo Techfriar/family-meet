@@ -13,9 +13,32 @@ body {
         background-image: url('/public/assets/bg-mobile.png');
         margin: 2rem !important;
     }
+
     .custom-form-padding {
         padding-top: 2em !important;
     }
+
+    .seperator-container {
+        padding-left: 3rem;
+        padding-right: 3rem;
+    }
+
+    .button {
+        width: 250px;
+        font-size: 1.1rem;
+        font-weight: bold;
+    }
+
+    .title-font {
+        font-size: 20px !important;
+    }
+
+    .float-right-custom {
+        float: right;
+        width: 50px;
+        height: 50px;
+    }
+
 }
 
 @media (min-width: 768px) {
@@ -27,7 +50,30 @@ body {
         padding-top: 5em !important;
         padding-left: 7em !important;
         padding-right: 7em !important;
+        padding-bottom: 1rem !important;
     }
+
+    .seperator-container {
+        padding-left: 10rem;
+        padding-right: 10rem;
+    }
+
+    .button {
+        width: 250px;
+        font-size: 1.1rem;
+        font-weight: bold;
+    }
+
+    .title-font {
+        font-size: 30px !important;
+    }
+
+    .float-right-custom {
+        float: right;
+        width: 70px;
+        height: 70px;
+    }
+
 }
 
 .glassMorphism {
@@ -37,6 +83,16 @@ body {
     border-radius: 10px;
     border: 1px solid rgba(255, 255, 255, 0.18);
 }
+
+.custom-separator {
+    border: none;
+    margin-top: 3em;
+    padding-left: 3rem;
+    padding-right: 3rem;
+    margin-bottom: 2rem;
+    border-top: 0.2px solid #cec9c9;
+}
+
 
 .modal {
     display: none;
@@ -88,6 +144,11 @@ body {
     text-decoration: none;
     cursor: pointer;
 }
+
+.footer-font {
+    color: #414141;
+}
+
 
 /* Responsive adjustments */
 @media (max-width: 500px) {
