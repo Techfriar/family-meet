@@ -10,7 +10,7 @@ const familySchema = new mongoose.Schema({
         required: false
     },
     age: {
-        type: String, // Keeping age as a string to accommodate ranges like "0-18"
+        type: String,
         required: false
     },
     gender: {
