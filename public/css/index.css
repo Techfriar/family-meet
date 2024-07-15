@@ -1,14 +1,32 @@
 body {
     font-family: 'Manrope', sans-serif;
+    margin: 0;
+    /* Reset default margin */
+}
+
+.form {}
+
+/* Apply margin only on screens larger than 768px (typical tablet breakpoint) */
+@media (min-width: 768px) {
+    body {
+        margin: 5rem !important;
+    }
+
+    .custom-form-padding {
+        padding-top: 5em !important;
+        padding-left: 10em !important;
+        padding-right: 10em !important;
+    }
 }
 
 .glassMorphism {
-    background: rgba( 58, 53, 53, 0.05 );
-    backdrop-filter: blur( 4.5px );
-    -webkit-backdrop-filter: blur( 4.5px );
+    background: rgba(58, 53, 53, 0.05);
+    backdrop-filter: blur(4.5px);
+    -webkit-backdrop-filter: blur(4.5px);
     border-radius: 10px;
-    border: 1px solid rgba( 255, 255, 255, 0.18 );
+    border: 1px solid rgba(255, 255, 255, 0.18);
 }
+
 .modal {
     display: none;
     position: fixed;
