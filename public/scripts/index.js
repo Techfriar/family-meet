@@ -87,7 +87,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 'footer': 'If you have any other personal urgent matters, please feel free to contact us at',
             },
             'malayalam': {
-                'title': 'അനപ്പടിക്കൽ കുടുംബം <br> മീറ്റ് 2024',
+                'title': 'ആനപ്പടിക്കൽ കുടുംബം <br> മീറ്റ് 2024',
                 'uploadText': 'ഒരു ചിത്രം അപ്ലോഡ് ചെയ്യുക:',
                 'nameLabel': 'പേര്:',
                 'genderLabel': 'ലിംഗഭേദം:',
@@ -108,7 +108,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 'gmFathimaLabel': 'ഫാത്തിമകുട്ടി',
                 'gmWriteLabel': 'താങ്കളുടെ മുത്തശ്ശിയുടെ പേര് എഴുതുക',
                 'familyLabel': 'കുടുംബത്തിന്റെ പേര്:',
-                'familyAnapaddikalLabel': 'അനപ്പടിക്കൽ കുടുംബം',
+                'familyAnapaddikalLabel': 'ആനപ്പടിക്കൽ കുടുംബം',
                 'familyWriteLabel': 'താങ്കളുടെ കുടുംബത്തിന്റെ പേര് എഴുതുക',
                 'addressLabel': 'വിലാസം:',
                 'submitButton': 'സമർപ്പിക്കുക',
