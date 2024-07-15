@@ -13,9 +13,9 @@ export const postFormData = async (req, res) => {
       age: req.body.age,
       gender: req.body.gender,
       education: req.body.education,
-      grandFather: req.body.grandFather || '',
-      grandMother: req.body.grandMother || '',
-      family: req.body.family || '',
+      grandFather: req.body.grandFather === 'other' ? req.body.grandFatherName : req.body.grandFather || '',
+      grandMother: req.body.grandMother === 'other' ? req.body.grandMotherName : req.body.grandMother || '',
+      family: req.body.family === 'other' ? req.body.familyName : req.body.family || '',
       address: req.body.address
     };
     const newFamily = new Family(formData);
@@ -75,7 +75,7 @@ export const postFormData = async (req, res) => {
     };
 
     // Send the email
-   await transporter.sendMail(mailOptions);
+    await transporter.sendMail(mailOptions);
     const response = { success: true, message: 'Form data received and saved successfully' };
     res.json(response);
   } catch (error) {

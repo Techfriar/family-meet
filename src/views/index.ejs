@@ -17,9 +17,12 @@
     <div id="successModal" class="modal rounded-e-2xl hidden">
         <div class="modal-content">
             <span class="close" id="closeModal">&times;</span>
-            <img id="vector " src="/public/assets/Vector.png" alt="success-icon"
-                class="absolute top-2 right-4 cursor-pointer w-12 h-12 mb-3">
-            <h2 class="text-[20px] font-bold leading-[50.32px] text-left mt-6">Submitted Successfully</h2>
+            <div class="modal-icon">
+                <img id="vector" src="/public/assets/Vector.png" alt="success-icon" class="w-12 h-12">
+            </div>
+            <div class="modal-text">
+                <h2 class="text-[20px] font-bold leading-[50.32px] text-left">Submitted Successfully</h2>
+            </div>
         </div>
     </div>
 
@@ -27,10 +30,13 @@
     <div id="errorModal" class="modal rounded-e-2xl hidden">
         <div class="modal-content">
             <span class="close" id="closeErrorModal">&times;</span>
-            <img id="vectorError" src="/public/assets/failed.svg" alt="failed-icon"
-                class="absolute top-2 right-4 cursor-pointer w-12 h-12 mb-3">
-            <h2 class="text-[20px] font-bold leading-[50.32px] text-left mt-6">Failed to submit details. Please try
-                again.</h2>
+            <div class="modal-icon">
+                <img id="vectorError" src="/public/assets/failed.svg" alt="failed-icon" class="w-12 h-12">
+            </div>
+            <div class="modal-text">
+                <h2 class="text-[20px] font-bold leading-[50.32px] text-left">Failed to submit details. Please try
+                    again.</h2>
+            </div>
         </div>
     </div>
 
@@ -134,7 +140,7 @@
                     </label>
                 </div>
                 <input type="text" id="grandFatherName" name="grandFatherName"
-                    placeholder="Write your Grand Father's name" class="border rounded-lg p-2 w-full hidden">
+                    class="border rounded-lg p-2 w-full hidden">
             </div>
 
             <div class="mb-4">
@@ -151,7 +157,7 @@
                     </label>
                 </div>
                 <input type="text" id="grandMotherName" name="grandMotherName"
-                    placeholder="Write your Grand Mother's name" class="border rounded-lg p-2 w-full hidden">
+                    class="border rounded-lg p-2 w-full hidden">
             </div>
 
             <div class="mb-4">
@@ -167,8 +173,7 @@
                         <span id="familyWriteLabel">Write your Family name</span>
                     </label>
                 </div>
-                <input type="text" id="familyName" name="familyName" placeholder="Write your Family name"
-                    class="border rounded-lg p-2 w-full hidden">
+                <input type="text" id="familyName" name="familyName" class="border rounded-lg p-2 w-full hidden">
             </div>
 
             <div class="mb-4">
@@ -178,61 +183,76 @@
 
             <div class="mb-4 flex justify-center">
                 <button type="submit" id="submitButton"
-                    class="bg-[#2C4A78] button text-white py-2 px-4 rounded-lg hover:bg-[#a5bfe7]">Submit</button>
+                    class="bg-[#2C4A78] button text-white py-2 px-4 rounded-lg hover:bg-[#a5bfe7]"> <span
+                        id="buttonText">Submit</span>
+                    <div id="loadingSpinner"
+                        class="hidden ml-2 w-5 h-5 border-t-2 border-white border-solid rounded-full animate-spin">
+                    </div>
+                </button>
+                </button>
             </div>
         </form>
     </div>
     <div class="w-6 seperator-container">
         <hr class="custom-separator my-8 mx-auto w-11/12 md:w-4/5 lg:w-3/4">
     </div>
-    <footer class="mt-8 mb-4 text-center text-xs footer-font">
-        <p>
+    <footer class="mt-8 mb-4 text-center text-xs footer">
+        <p id="footer">
             If you have any other personal urgent matters, please feel free to contact us at
         </p>
-        <p> <a href="mailto:team@anappadikkal.com" class="underline hover:text-blue-700">team@anappadikkal.com</a>
+        <p> <a href="mailto:team@anappadikkal.com" class="underline email hover:text-blue-700">team@anappadikkal.com</a>
         </p>
     </footer>
     <script src="/public/scripts/index.js"></script>
     <script>
-        // Show the modal 
-        function showModal() {
+        // Show the success modal 
+        function showSuccessModal() {
             document.getElementById('successModal').style.display = 'block';
         }
 
-        // Hide the modal
-        function closeModal() {
-            document.getElementById('errorModal').style.display = 'none';
+        // Hide the success modal
+        function closeSuccessModal() {
+            document.getElementById('successModal').style.display = 'none';
         }
 
-        // Show the modal 
+        // Show the error modal 
         function showErrorModal() {
             document.getElementById('errorModal').style.display = 'block';
         }
 
-        // Hide the modal
+        // Hide the error modal
         function closeErrorModal() {
             document.getElementById('errorModal').style.display = 'none';
         }
 
-        // Close modal when clicking on the close button
+        // Close success modal when clicking on the close button
         document.getElementById('closeModal').onclick = function () {
-            closeModal();
+            closeSuccessModal();
+        }
+
+        // Close error modal when clicking on the close button
+        document.getElementById('closeErrorModal').onclick = function () {
             closeErrorModal();
         }
 
-        // Close modal when clicking outside of the modal
+        // Close modals when clicking outside of them
         window.onclick = function (event) {
             if (event.target === document.getElementById('successModal')) {
-                closeModal();
+                closeSuccessModal();
+            }
+            if (event.target === document.getElementById('errorModal')) {
+                closeErrorModal();
             }
         }
-
 
         document.addEventListener('DOMContentLoaded', function () {
             const form = document.getElementById('familyForm');
             form.addEventListener('submit', function (e) {
                 e.preventDefault();
-
+                // Disable button and show loading spinner
+                submitButton.disabled = true;
+                buttonText.textContent = 'Submitting...';
+                loadingSpinner.classList.remove('hidden');
                 const formData = new FormData(form);
 
                 fetch('/submit-form', {
@@ -242,13 +262,17 @@
                     .then(response => response.json())
                     .then(data => {
                         if (data.success) {
-                            showModal();
+                            showSuccessModal();
                         } else {
                             showErrorModal();
                         }
                     })
                     .catch(error => {
                         showErrorModal();
+                    }).finally(() => {
+                        submitButton.disabled = false;
+                        buttonText.textContent = 'Submit';
+                        loadingSpinner.classList.add('hidden');
                     });
             });
         });

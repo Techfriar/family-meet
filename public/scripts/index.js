@@ -83,7 +83,8 @@ document.addEventListener('DOMContentLoaded', function () {
                 'familyAnapaddikalLabel': 'Anapaddikal Family',
                 'familyWriteLabel': 'Write your Family name',
                 'addressLabel': 'Address:',
-                'submitButton': 'Submit'
+                'submitButton': 'Submit',
+                'footer': 'If you have any other personal urgent matters, please feel free to contact us at',
             },
             'malayalam': {
                 'title': 'അനപ്പടിക്കൽ കുടുംബം <br> മീറ്റ് 2024',
@@ -102,7 +103,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 'phdLabel': 'പി‌എച്ച്‌ഡി',
                 'gfLabel': 'മുത്തച്ഛൻ്റെ പേര്:',
                 'gfMammuLabel': 'മമ്മു ഹാജി',
-                'gfWriteLabel': 'താങ്കളുടെ മുസ്‌ലിം പേരെഴുത്തുക',
+                'gfWriteLabel': 'താങ്കളുടെ മുത്തച്ഛൻ്റെ പേരെഴുത്തുക',
                 'gmLabel': 'മുത്തശ്ശിയുടെ പേര്:',
                 'gmFathimaLabel': 'ഫാത്തിമകുട്ടി',
                 'gmWriteLabel': 'താങ്കളുടെ മുത്തശ്ശിയുടെ പേര് എഴുതുക',
@@ -110,7 +111,8 @@ document.addEventListener('DOMContentLoaded', function () {
                 'familyAnapaddikalLabel': 'അനപ്പടിക്കൽ കുടുംബം',
                 'familyWriteLabel': 'താങ്കളുടെ കുടുംബത്തിന്റെ പേര് എഴുതുക',
                 'addressLabel': 'വിലാസം:',
-                'submitButton': 'സമർപ്പിക്കുക'
+                'submitButton': 'സമർപ്പിക്കുക',
+                'footer': 'നിങ്ങൾക് വ്യക്തിപരമായ മറ്റെന്തെങ്കിലും ആവിശ്യം ഉണ്ടെങ്കിൽ ദയവായി ഞങ്ങളെ ബന്ധപെടുക',         
             }
         };
 
@@ -124,6 +126,7 @@ document.addEventListener('DOMContentLoaded', function () {
         document.getElementById('maleLabel').textContent = newLangData.maleLabel;
         document.getElementById('femaleLabel').textContent = newLangData.femaleLabel;
         document.getElementById('educationLabel').textContent = newLangData.educationLabel;
+        document.getElementById('genderLabel').textContent = newLangData.genderLabel;
         document.getElementById('lkgLabel').textContent = newLangData.lkgLabel;
         document.getElementById('sslcLabel').textContent = newLangData.sslcLabel;
         document.getElementById('plus2Label').textContent = newLangData.plus2Label;
@@ -141,6 +144,7 @@ document.addEventListener('DOMContentLoaded', function () {
         document.getElementById('familyWriteLabel').textContent = newLangData.familyWriteLabel;
         document.getElementById('addressLabel').textContent = newLangData.addressLabel;
         document.getElementById('submitButton').textContent = newLangData.submitButton;
+        document.getElementById('footer').textContent = newLangData.footer;
 
         this.src = `/public/assets/${newLang}.png`;
     });

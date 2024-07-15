@@ -46,6 +46,15 @@ body {
         margin-right: 10px;
     }
 
+    .footer {
+        font-size: 15px;
+        color: #414141;
+    }
+
+    .email {
+        text-decoration: underline
+    }
+
 }
 
 @media (min-width: 768px) {
@@ -88,6 +97,13 @@ body {
         margin-right: 10px;
     }
 
+    .footer {
+        color: #414141;
+    }
+
+    .email {
+        text-decoration: underline
+    }
 }
 
 .glassMorphism {
@@ -122,10 +138,11 @@ body {
     justify-content: center;
 }
 
+
 .modal-content {
     background-color: #fefefe;
     width: 466px;
-    height: 300.88px;
+    height: auto;
     position: fixed;
     top: 50%;
     left: 50%;
@@ -137,9 +154,17 @@ body {
     opacity: 1;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
-    gap: 0px;
+    gap: 20px;
+}
+
+.modal-icon {
+    margin-top: 30px;
+}
+
+.modal-text {
+    margin-top: 7px;
 }
 
 .close {
@@ -159,10 +184,20 @@ body {
     cursor: pointer;
 }
 
-.footer-font {
-    color: #414141;
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
 }
 
+.animate-spin {
+    animation: spin 1s linear infinite;
+}
+
+.button:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+}
 
 /* Responsive adjustments */
 @media (max-width: 500px) {
@@ -170,5 +205,9 @@ body {
         width: 90%;
         height: auto;
         min-height: 200px;
+    }
+
+    .modal-icon {
+        margin-top: 20px;
     }
 }
