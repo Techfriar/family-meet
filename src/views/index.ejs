@@ -12,14 +12,28 @@
 
 
 <body class="min-h-screen font-manrope">
+
+    <!-- Success Modal -->
     <div id="successModal" class="modal rounded-e-2xl hidden">
         <div class="modal-content">
             <span class="close" id="closeModal">&times;</span>
-            <img id="vector " src="/public/assets/Vector.png" alt="Language Toggle"
-                class="absolute top-4 right-4 cursor-pointer w-12 h-12 mb-3">
+            <img id="vector " src="/public/assets/Vector.png" alt="success-icon"
+                class="absolute top-2 right-4 cursor-pointer w-12 h-12 mb-3">
             <h2 class="text-[20px] font-bold leading-[50.32px] text-left mt-6">Submitted Successfully</h2>
         </div>
     </div>
+
+    <!--Error Modal -->
+    <div id="errorModal" class="modal rounded-e-2xl hidden">
+        <div class="modal-content">
+            <span class="close" id="closeErrorModal">&times;</span>
+            <img id="vectorError" src="/public/assets/failed.svg" alt="failed-icon"
+                class="absolute top-2 right-4 cursor-pointer w-12 h-12 mb-3">
+            <h2 class="text-[20px] font-bold leading-[50.32px] text-left mt-6">Failed to submit details. Please try
+                again.</h2>
+        </div>
+    </div>
+
     <img id="languageToggle" src="/public/assets/english.png" alt="Language Toggle"
         class="float-right-custom mr-4 md:mr-8">
     <div class="mt-10 md:mt-20 px-4 md:px-0">
@@ -32,11 +46,13 @@
             <div class="mb-4 bg-black w-full">
                 <label for="picture" id="uploadLabel"
                     class="block text-lg font-semibold mb-2 flex items-center cursor-pointer">
-                    <img src="public/assets/Upload.png" alt="Upload Icon" class="w-6 h-6 mr-2">
+                    <img id="uploadIcon" src="/public/assets/Upload.png" alt="Upload Icon" class="w-6 h-6 mr-2">
+                    <img id="imagePreview" class="mt-2 hidden thumbnail" alt="Image Preview" />
                     <span id="uploadText" class="text-[#2C4A78]">Upload a picture:</span>
                 </label>
-                <input type="file" id="picture" name="picture" accept="image/*" class="hidden" required>
+                <input type="file" id="picture" name="picture" accept="image" class="hidden" required>
             </div>
+
 
             <div class="mb-4">
                 <label for="name" id="nameLabel" class="block text-lg font-semibold mb-2">Name:</label>
@@ -185,12 +201,23 @@
 
         // Hide the modal
         function closeModal() {
-            document.getElementById('successModal').style.display = 'none';
+            document.getElementById('errorModal').style.display = 'none';
+        }
+
+        // Show the modal 
+        function showErrorModal() {
+            document.getElementById('errorModal').style.display = 'block';
+        }
+
+        // Hide the modal
+        function closeErrorModal() {
+            document.getElementById('errorModal').style.display = 'none';
         }
 
         // Close modal when clicking on the close button
         document.getElementById('closeModal').onclick = function () {
             closeModal();
+            closeErrorModal();
         }
 
         // Close modal when clicking outside of the modal
@@ -217,11 +244,11 @@
                         if (data.success) {
                             showModal();
                         } else {
-                            alert('An error occurred while submitting the form');
+                            showErrorModal();
                         }
                     })
                     .catch(error => {
-                        alert('An error occurred while submitting the form.');
+                        showErrorModal();
                     });
             });
         });

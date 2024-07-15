@@ -79,6 +79,7 @@ export const postFormData = async (req, res) => {
     const response = { success: true, message: 'Form data received and saved successfully' };
     res.json(response);
   } catch (error) {
+    console.log(error);
     const errorResponse = { success: false, message: 'Internal Server Error' };
     res.status(500).json(errorResponse);
   }

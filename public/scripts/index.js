@@ -3,6 +3,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const pictureInput = document.getElementById('picture');
     const imagePreview = document.getElementById('imagePreview');
     const uploadText = document.getElementById('uploadText');
+    const uploadIcon = document.getElementById('uploadIcon');
 
     // Handle image selection and preview
     pictureInput.addEventListener('change', function (e) {
@@ -11,9 +12,17 @@ document.addEventListener('DOMContentLoaded', function () {
             const reader = new FileReader();
             reader.onload = function (e) {
                 imagePreview.src = e.target.result;
-                uploadText.textContent = file.name; // Update text to show selected file name
+                imagePreview.classList.remove('hidden');
+                // Show the image preview
+                uploadText.textContent = file.name;
+                uploadIcon.classList.add('hidden')
+                // Update text to show selected file name
             }
             reader.readAsDataURL(file);
+        } else {
+            imagePreview.classList.add('hidden'); // Hide the image preview if no file is selected
+            imagePreview.src = ''; // Clear the src attribute
+            uploadText.textContent = 'Upload a picture:'; // Reset the upload text
         }
     });
 
