@@ -21,7 +21,7 @@
                 <img id="vector" src="/public/assets/Vector.png" alt="success-icon" class="w-12 h-12">
             </div>
             <div class="modal-text">
-                <h2 class="text-[20px] font-bold leading-[50.32px] text-left">Submitted Successfully</h2>
+                <h2 id="modalText" class="text-[20px] font-bold leading-[50.32px] text-left">Submitted Successfully</h2>
             </div>
         </div>
     </div>
@@ -56,7 +56,8 @@
                     <img id="imagePreview" class="mt-2 hidden thumbnail" alt="Image Preview" />
                     <span id="uploadText" class="text-[#2C4A78] cursor">Upload a picture:</span>
                 </label>
-                <input type="file" id="picture" name="picture" accept="image" class="hidden" required>
+                <input type="file" id="picture" name="picture" accept="image/*" class="hidden">
+                <p id="pictureError" class="error-message mt-2 hidden">Please upload a picture.</p>
             </div>
 
 
@@ -210,9 +211,45 @@
             const submitButton = document.getElementById('submitButton');
             const buttonText = document.getElementById('buttonText');
             const loadingSpinner = document.getElementById('loadingSpinner');
+            const pictureInput = document.getElementById('picture');
+            const pictureError = document.getElementById('pictureError');
+            const modal = document.getElementById("successModal");
+            const errorModal = document.getElementById("errorModal");
+            const closeModal = document.getElementById("closeModal");
 
+            // Function to show the modal
+            function showModal() {
+                modal.classList.remove("hidden");
+                modal.style.display = "flex";
+            }
+
+            function showErrorModal() {
+                errorModal.classList.remove("hidden");
+                errorModal.style.display = "flex";
+            }
+
+            // Function to hide the modal
+            function hideModal() {
+                modal.classList.add("hidden");
+                modal.style.display = "none";
+                errorModal.classList.add("hidden");
+                errorModal.style.display = "none";
+            }
+
+            // Hide the modal initially
+            hideModal();
+
+            // Event listener to close the modal when the close button is clicked
+            closeModal.addEventListener("click", hideModal);
             form.addEventListener('submit', function (e) {
                 e.preventDefault();
+                if (!pictureInput.files.length) {
+                    pictureError.classList.remove('hidden');
+                    setTimeout(() => {
+                        pictureError.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    }, 100);
+                    return;
+                }
                 // Disable button and show loading spinner
                 submitButton.disabled = true;
                 buttonText.textContent = 'Submitting...';
@@ -226,14 +263,13 @@
                     .then(response => response.json())
                     .then(data => {
                         if (data.success) {
-                            showSuccessModal();
-                            resetForm(); 
+                            showModal();
+                            resetForm();
                         } else {
                             showErrorModal();
                         }
                     })
                     .catch(error => {
-                        console.error('Error:', error);
                         showErrorModal();
                     })
                     .finally(() => {
@@ -244,7 +280,7 @@
             });
 
             function resetForm() {
-                form.reset(); 
+                form.reset();
 
                 const pictureInput = document.getElementById('picture');
                 const imagePreview = document.getElementById('imagePreview');
@@ -266,15 +302,6 @@
                 form.querySelectorAll('input[type="radio"]').forEach(function (radio) {
                     radio.checked = false;
                 });
-            }
-
-            // Modal handling functions
-            function showSuccessModal() {
-                document.getElementById('successModal').style.display = 'block';
-            }
-
-            function showErrorModal() {
-                document.getElementById('errorModal').style.display = 'block';
             }
 
             function closeSuccessModal() {

@@ -4,11 +4,13 @@ document.addEventListener('DOMContentLoaded', function () {
     const imagePreview = document.getElementById('imagePreview');
     const uploadText = document.getElementById('uploadText');
     const uploadIcon = document.getElementById('uploadIcon');
+    const pictureError = document.getElementById('pictureError');
 
     // Handle image selection and preview
     pictureInput.addEventListener('change', function (e) {
         const file = e.target.files[0];
         if (file) {
+            pictureError.classList.add('hidden');
             const reader = new FileReader();
             reader.onload = function (e) {
                 imagePreview.src = e.target.result;
@@ -85,10 +87,12 @@ document.addEventListener('DOMContentLoaded', function () {
                 'addressLabel': 'Address:',
                 'submitButton': 'Submit',
                 'footer': 'If you have any other personal urgent matters, please feel free to contact us at',
+                'pictureError': 'Please upload a picture.',
+                'modalText': 'Submitted Successfully',
             },
             'malayalam': {
                 'title': 'ആനപ്പടിക്കൽ കുടുംബം <br> മീറ്റ് 2024',
-                'uploadText': 'ഒരു ചിത്രം അപ്ലോഡ് ചെയ്യുക:',
+                'uploadText': 'ചിത്രം അപ്ലോഡ് ചെയ്യുക:',
                 'nameLabel': 'പേര്:',
                 'genderLabel': 'ലിംഗഭേദം:',
                 'ageLabel': 'പ്രായം:',
@@ -112,7 +116,9 @@ document.addEventListener('DOMContentLoaded', function () {
                 'familyWriteLabel': 'താങ്കളുടെ കുടുംബത്തിന്റെ പേര് എഴുതുക',
                 'addressLabel': 'വിലാസം:',
                 'submitButton': 'സമർപ്പിക്കുക',
-                'footer': 'നിങ്ങൾക് വ്യക്തിപരമായ മറ്റെന്തെങ്കിലും ആവിശ്യം ഉണ്ടെങ്കിൽ ദയവായി ഞങ്ങളെ ബന്ധപെടുക',         
+                'footer': 'നിങ്ങൾക് വ്യക്തിപരമായ മറ്റെന്തെങ്കിലും ആവിശ്യം ഉണ്ടെങ്കിൽ ദയവായി ഞങ്ങളെ ബന്ധപെടുക',
+                'pictureError': 'ഒരു ചിത്രം അപ്ലോഡ് ചെയ്യുക',
+                'modalText': 'വിജയകരമായി സമർപ്പിച്ചു',
             }
         };
 
@@ -145,6 +151,7 @@ document.addEventListener('DOMContentLoaded', function () {
         document.getElementById('addressLabel').textContent = newLangData.addressLabel;
         document.getElementById('submitButton').textContent = newLangData.submitButton;
         document.getElementById('footer').textContent = newLangData.footer;
+        document.getElementById('pictureError').textContent = newLangData.pictureError;
 
         this.src = `/public/assets/${newLang}.png`;
     });
