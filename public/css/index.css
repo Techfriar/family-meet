@@ -128,6 +128,10 @@ input[type="radio"]:checked {
     accent-color: #2C4A78;
 }
 
+input[type="radio"] {
+    cursor: pointer;
+}
+
 .modal {
     display: none;
     position: fixed;
