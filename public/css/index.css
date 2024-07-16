@@ -69,6 +69,10 @@ body {
         padding-bottom: 1rem !important;
     }
 
+    .cursor{
+        cursor: pointer;
+    }
+
     .seperator-container {
         padding-left: 10rem;
         padding-right: 10rem;
