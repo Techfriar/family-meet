@@ -205,48 +205,12 @@
     </footer>
     <script src="/public/scripts/index.js"></script>
     <script>
-        // Show the success modal 
-        function showSuccessModal() {
-            document.getElementById('successModal').style.display = 'block';
-        }
-
-        // Hide the success modal
-        function closeSuccessModal() {
-            document.getElementById('successModal').style.display = 'none';
-        }
-
-        // Show the error modal 
-        function showErrorModal() {
-            document.getElementById('errorModal').style.display = 'block';
-        }
-
-        // Hide the error modal
-        function closeErrorModal() {
-            document.getElementById('errorModal').style.display = 'none';
-        }
-
-        // Close success modal when clicking on the close button
-        document.getElementById('closeModal').onclick = function () {
-            closeSuccessModal();
-        }
-
-        // Close error modal when clicking on the close button
-        document.getElementById('closeErrorModal').onclick = function () {
-            closeErrorModal();
-        }
-
-        // Close modals when clicking outside of them
-        window.onclick = function (event) {
-            if (event.target === document.getElementById('successModal')) {
-                closeSuccessModal();
-            }
-            if (event.target === document.getElementById('errorModal')) {
-                closeErrorModal();
-            }
-        }
-
         document.addEventListener('DOMContentLoaded', function () {
             const form = document.getElementById('familyForm');
+            const submitButton = document.getElementById('submitButton');
+            const buttonText = document.getElementById('buttonText');
+            const loadingSpinner = document.getElementById('loadingSpinner');
+
             form.addEventListener('submit', function (e) {
                 e.preventDefault();
                 // Disable button and show loading spinner
@@ -263,18 +227,77 @@
                     .then(data => {
                         if (data.success) {
                             showSuccessModal();
+                            resetForm(); 
                         } else {
                             showErrorModal();
                         }
                     })
                     .catch(error => {
+                        console.error('Error:', error);
                         showErrorModal();
-                    }).finally(() => {
+                    })
+                    .finally(() => {
                         submitButton.disabled = false;
                         buttonText.textContent = 'Submit';
                         loadingSpinner.classList.add('hidden');
                     });
             });
+
+            function resetForm() {
+                form.reset(); 
+
+                const pictureInput = document.getElementById('picture');
+                const imagePreview = document.getElementById('imagePreview');
+                const uploadText = document.getElementById('uploadText');
+                const uploadIcon = document.getElementById('uploadIcon');
+
+                pictureInput.value = '';
+                imagePreview.classList.add('hidden');
+                imagePreview.src = '';
+                uploadText.textContent = 'Upload a picture:';
+                uploadIcon.classList.remove('hidden');
+
+                // Reset custom input fields
+                document.getElementById('grandFatherName').style.display = 'none';
+                document.getElementById('grandMotherName').style.display = 'none';
+                document.getElementById('familyName').style.display = 'none';
+
+                // Uncheck all radio buttons
+                form.querySelectorAll('input[type="radio"]').forEach(function (radio) {
+                    radio.checked = false;
+                });
+            }
+
+            // Modal handling functions
+            function showSuccessModal() {
+                document.getElementById('successModal').style.display = 'block';
+            }
+
+            function showErrorModal() {
+                document.getElementById('errorModal').style.display = 'block';
+            }
+
+            function closeSuccessModal() {
+                document.getElementById('successModal').style.display = 'none';
+            }
+
+            function closeErrorModal() {
+                document.getElementById('errorModal').style.display = 'none';
+            }
+
+            // Close button event listeners
+            document.getElementById('closeModal').onclick = closeSuccessModal;
+            document.getElementById('closeErrorModal').onclick = closeErrorModal;
+
+            // Close modals when clicking outside of them
+            window.onclick = function (event) {
+                if (event.target === document.getElementById('successModal')) {
+                    closeSuccessModal();
+                }
+                if (event.target === document.getElementById('errorModal')) {
+                    closeErrorModal();
+                }
+            }
         });
     </script>
 </body>
