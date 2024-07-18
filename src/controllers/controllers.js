@@ -117,7 +117,7 @@ export const postFormData = async (req, res) => {
                       <p><b>Related to:</b> ${convertFormValue('relatedTo2', savedFamily.relatedTo2, language)}</p>
                       <p><b>Family Name:</b> ${convertFormValue('family', savedFamily.family, language)}</p>
                       <p><b>Phone:</b> ${savedFamily.phone}</p>
-                      <p><b>Employment:</b> ${savedFamily.employment}</p>
+                      <p><b>Employment:</b> ${savedFamily.employment ?savedFamily.employment : '-' }</p>
                       <p><b>Address:</b> ${savedFamily.address}</p>
                   </div>
               </div>
