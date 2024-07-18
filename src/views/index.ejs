@@ -315,8 +315,9 @@
             }
 
             function closeSuccessModal() {
+                window.scrollTo(0, 0); // Scroll to the top of the page
                 document.getElementById('successModal').style.display = 'none';
-                window.location.reload(); // Refresh the window
+                window.location.reload();
             }
 
             function closeErrorModal() {
