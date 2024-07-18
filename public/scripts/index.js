@@ -109,7 +109,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 'phdLabel': 'പി‌എച്ച്‌ഡി',
                 'gfLabel': 'കുടുംബവുമായുള്ള ബന്ധം',
                 'gfMammuLabel': 'മമ്മു ഹാജി',
-                'gfMohideenLabel': 'മൊഹിദീൻകുട്ടി (പീച്ചി മാസ്റ്റർ)',
+                'gfMohideenLabel': 'മൊഹിദീൻകുട്ടി (പീച്ചി മാഷ്)',
                 'gfWriteLabel': 'മറ്റുള്ളവർ',
                 'gmLabel': 'കുടുംബവുമായുള്ള ബന്ധം:',
                 'gmFathimaLabel': 'ഫാത്തിമകുട്ടി',
