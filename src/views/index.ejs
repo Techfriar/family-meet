@@ -60,117 +60,113 @@
                 <p id="pictureError" class="error-message mt-2 hidden">Please upload a picture.</p>
             </div>
 
-
             <div class="mb-4">
-                <label for="name" id="nameLabel" class="block text-lg font-semibold mb-2">Name:</label>
+                <label for="name" id="nameLabel" class="block text-lg font-semibold mb-2">Name</label>
                 <input type="text" id="name" name="name" class="border rounded-lg p-2 w-full" required>
             </div>
 
             <div class="mb-4">
-                <label id="ageLabel" class="block text-lg font-semibold mb-2">Age:</label>
+                <label id="ageLabel" class="block text-lg font-semibold mb-2">Age</label>
                 <div class="flex flex-wrap gap-4">
                     <label class="flex items-center">
-                        <input type="radio" id="age0-18" name="age" value="0-18" class="mr-2" required>
+                        <input type="radio" id="age0-18" name="age" value="0" class="mr-2" required>
                         <span>0-18</span>
                     </label>
                     <label class="flex items-center">
-                        <input type="radio" id="age18-50" name="age" value="18-50" class="mr-2" required>
+                        <input type="radio" id="age18-50" name="age" value="1" class="mr-2" required>
                         <span>18-50</span>
                     </label>
                     <label class="flex items-center">
-                        <input type="radio" id="age50+" name="age" value="50+" class="mr-2" required>
+                        <input type="radio" id="age50+" name="age" value="2" class="mr-2" required>
                         <span>50+</span>
                     </label>
                 </div>
             </div>
 
             <div class="mb-4">
-                <label id="genderLabel" class="block text-lg font-semibold mb-2">Gender:</label>
+                <label id="genderLabel" class="block text-lg font-semibold mb-2">Gender</label>
                 <div class="flex gap-4">
                     <label class="flex items-center">
-                        <input type="radio" id="male" name="gender" value="Male" class="mr-2" required>
+                        <input type="radio" id="male" name="gender" value="0" class="mr-2" required>
                         <span id="maleLabel">Male</span>
                     </label>
                     <label class="flex items-center">
-                        <input type="radio" id="female" name="gender" value="Female" class="mr-2" required>
+                        <input type="radio" id="female" name="gender" value="1" class="mr-2" required>
                         <span id="femaleLabel">Female</span>
                     </label>
                 </div>
             </div>
 
             <div class="mb-4">
-                <label id="educationLabel" class="block text-lg font-semibold mb-2">Education:</label>
+                <label id="educationLabel" class="block text-lg font-semibold mb-2">Education</label>
                 <div class="grid grid-cols-2 md:grid-cols-3 gap-4 mb-2">
                     <label class="flex items-center">
-                        <input type="radio" id="lkg-ukg" name="education" value="LKG/UKG" class="mr-2" required>
+                        <input type="radio" id="lkg-ukg" name="education" value="0" class="mr-2" required>
                         <span id="lkgLabel">LKG/UKG</span>
                     </label>
                     <label class="flex items-center">
-                        <input type="radio" id="sslc" name="education" value="SSLC" class="mr-2" required>
+                        <input type="radio" id="sslc" name="education" value="1" class="mr-2" required>
                         <span id="sslcLabel">SSLC</span>
                     </label>
                     <label class="flex items-center">
-                        <input type="radio" id="plus2" name="education" value="+2" class="mr-2" required>
+                        <input type="radio" id="plus2" name="education" value="2" class="mr-2" required>
                         <span id="plus2Label">+2</span>
                     </label>
                     <label class="flex items-center">
-                        <input type="radio" id="degree" name="education" value="Degree" class="mr-2" required>
+                        <input type="radio" id="degree" name="education" value="3" class="mr-2" required>
                         <span id="degreeLabel">Degree</span>
                     </label>
                     <label class="flex items-center">
-                        <input type="radio" id="pg" name="education" value="PG" class="mr-2" required>
+                        <input type="radio" id="pg" name="education" value="4" class="mr-2" required>
                         <span id="pgLabel">PG</span>
                     </label>
                     <label class="flex items-center">
-                        <input type="radio" id="phd" name="education" value="PHD" class="mr-2" required>
+                        <input type="radio" id="phd" name="education" value="5" class="mr-2" required>
                         <span id="phdLabel">PHD</span>
                     </label>
                 </div>
             </div>
 
             <div class="mb-4">
-                <label id="gfLabel" class="block text-lg font-semibold mb-2">Grand Father's name:</label>
+                <label id="gfLabel" class="block text-lg font-semibold mb-2">Related to</label>
                 <div class="flex flex-col gap-2 mb-2">
                     <label class="flex items-center">
-                        <input type="radio" id="gf-mammu" name="grandFather" value="Mammu Haji" class="mr-2" required>
-                        <span id="gfMammuLabel">Mammu Haji</span>
+                        <input type="radio" id="gf-mohideen" name="relatedTo" value="0" class="mr-2" required>
+                        <span id="gfMohideenLabel">Mohideenkutty (Peechi Master)</span>
                     </label>
                     <label class="flex items-center">
-                        <input type="radio" id="gf-write" name="grandFather" value="other" class="mr-2" required>
-                        <span id="gfWriteLabel">Write your Grand Father's name</span>
+                        <input type="radio" id="gf-write" name="relatedTo" value="1" class="mr-2" required>
+                        <span id="gfWriteLabel">Others</span>
                     </label>
                 </div>
-                <input type="text" id="grandFatherName" name="grandFatherName"
-                    class="border rounded-lg p-2 w-full hidden">
+                <input type="text" id="relatedToName" name="relatedToName" class="border rounded-lg p-2 w-full hidden">
             </div>
 
             <div class="mb-4">
-                <label id="gmLabel" class="block text-lg font-semibold mb-2">Grand Mother's name:</label>
+                <label id="gmLabel" class="block text-lg font-semibold mb-2">Related to</label>
                 <div class="flex flex-col gap-2 mb-2">
                     <label class="flex items-center">
-                        <input type="radio" id="gm-fathimakutty" name="grandMother" value="Fathimakutty" class="mr-2"
-                            required>
+                        <input type="radio" id="gm-fathimakutty" name="relatedTo2" value="0" class="mr-2" required>
                         <span id="gmFathimaLabel">Fathimakutty</span>
                     </label>
                     <label class="flex items-center">
-                        <input type="radio" id="gm-write" name="grandMother" value="other" class="mr-2" required>
-                        <span id="gmWriteLabel">Write your Grand Mother's name</span>
+                        <input type="radio" id="gm-write" name="relatedTo2" value="1" class="mr-2" required>
+                        <span id="gmWriteLabel">Others</span>
                     </label>
                 </div>
-                <input type="text" id="grandMotherName" name="grandMotherName"
+                <input type="text" id="relatedTo2Name" name="relatedTo2Name"
                     class="border rounded-lg p-2 w-full hidden">
             </div>
 
             <div class="mb-4">
-                <label id="familyLabel" class="block text-lg font-semibold mb-2">Family name:</label>
+                <label id="familyLabel" class="block text-lg font-semibold mb-2">Family name</label>
                 <div class="flex flex-col gap-2 mb-2">
                     <label class="flex items-center">
-                        <input type="radio" id="family-anapaddikal" name="family" value="Anapaddikal Family"
-                            class="mr-2" required>
+                        <input type="radio" id="family-anapaddikal" name="family" value="0" class="mr-2" required>
                         <span id="familyAnapaddikalLabel">Anapaddikal Family</span>
                     </label>
                     <label class="flex items-center">
-                        <input type="radio" id="family-write" name="family" value="other" class="mr-2" required>
+                        <input type="radio" id="family-write" name="family" value="1" class="mr-2" required>
                         <span id="familyWriteLabel">Write your Family name</span>
                     </label>
                 </div>
@@ -178,7 +174,18 @@
             </div>
 
             <div class="mb-4">
-                <label for="address" id="addressLabel" class="block text-lg font-semibold mb-2">Address:</label>
+                <label for="phone" id="phoneLabel" class="block text-lg font-semibold mb-2">Phone number</label>
+                <input type="text" id="phone" name="phone" class="border rounded-lg p-2 w-full" required>
+            </div>
+
+            <div class="mb-4">
+                <label for="employment" id="employmentLabel" class="block text-lg font-semibold mb-2">Employment
+                    (Company)</label>
+                <input type="text" id="employment" name="employment" class="border rounded-lg p-2 w-full" required>
+            </div>
+
+            <div class="mb-4">
+                <label for="address" id="addressLabel" class="block text-lg font-semibold mb-2">Address</label>
                 <textarea id="address" name="address" rows="4" class="border rounded-lg p-2 w-full" required></textarea>
             </div>
 
@@ -190,8 +197,8 @@
                         class="hidden ml-2 w-5 h-5 border-t-2 border-white border-solid rounded-full animate-spin">
                     </div>
                 </button>
-                </button>
             </div>
+            <input type="hidden" id="currentLanguage" name="currentLanguage" value="en">
         </form>
     </div>
     <div class="w-6 seperator-container">
@@ -216,6 +223,12 @@
             const modal = document.getElementById("successModal");
             const errorModal = document.getElementById("errorModal");
             const closeModal = document.getElementById("closeModal");
+            const languageToggle = document.getElementById('languageToggle');
+            const currentLanguageInput = document.getElementById('currentLanguage');
+
+            languageToggle.addEventListener('click', function () {
+                currentLanguageInput.value = currentLanguageInput.value === 'en' ? 'en' : 'ml';
+            });
 
             // Function to show the modal
             function showModal() {
@@ -268,9 +281,6 @@
                         } else {
                             showErrorModal();
                         }
-                    })
-                    .catch(error => {
-                        showErrorModal();
                     })
                     .finally(() => {
                         submitButton.disabled = false;

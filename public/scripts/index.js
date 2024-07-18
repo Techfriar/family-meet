@@ -15,16 +15,14 @@ document.addEventListener('DOMContentLoaded', function () {
             reader.onload = function (e) {
                 imagePreview.src = e.target.result;
                 imagePreview.classList.remove('hidden');
-                // Show the image preview
                 uploadText.textContent = file.name;
                 uploadIcon.classList.add('hidden')
-                // Update text to show selected file name
             }
             reader.readAsDataURL(file);
         } else {
-            imagePreview.classList.add('hidden'); // Hide the image preview if no file is selected
-            imagePreview.src = ''; // Clear the src attribute
-            uploadText.textContent = 'Upload a picture:'; // Reset the upload text
+            imagePreview.classList.add('hidden');
+            imagePreview.src = '';
+            uploadText.textContent = 'Upload a picture:';
         }
     });
 
@@ -37,21 +35,22 @@ document.addEventListener('DOMContentLoaded', function () {
     form.reset();
 
     // Show/hide custom input fields
-    document.querySelectorAll('input[name="grandFather"]').forEach(function (radio) {
-        radio.addEventListener('change', function () {
-            document.getElementById('grandFatherName').style.display = this.value === 'other' ? 'block' : 'none';
-        });
-    });
+    const otherFields = ['relatedTo', 'relatedTo2', 'family'];
+    otherFields.forEach(field => {
+        const radioInputs = document.querySelectorAll(`input[name="${field}"]`);
+        const textInput = document.getElementById(`${field}Name`);
 
-    document.querySelectorAll('input[name="grandMother"]').forEach(function (radio) {
-        radio.addEventListener('change', function () {
-            document.getElementById('grandMotherName').style.display = this.value === 'other' ? 'block' : 'none';
-        });
-    });
-
-    document.querySelectorAll('input[name="family"]').forEach(function (radio) {
-        radio.addEventListener('change', function () {
-            document.getElementById('familyName').style.display = this.value === 'other' ? 'block' : 'none';
+        radioInputs.forEach(input => {
+            input.addEventListener('change', function () {
+                if (this.value === '1' || (field === 'relatedTo2' && this.value === '1') || (field === 'family' && this.value === '1')) {
+                    textInput.classList.remove('hidden');
+                    textInput.required = true;
+                } else {
+                    textInput.classList.add('hidden');
+                    textInput.required = false;
+                    textInput.value = '';
+                }
+            });
         });
     });
 
@@ -63,28 +62,31 @@ document.addEventListener('DOMContentLoaded', function () {
             'english': {
                 'title': 'Anappadikkal Family <br> Meet 2024',
                 'uploadText': 'Upload a picture:',
-                'nameLabel': 'Name:',
-                'genderLabel': 'Gender:',
-                'ageLabel': 'Age:',
+                'nameLabel': 'Name',
+                'genderLabel': 'Gender',
+                'ageLabel': 'Age',
                 'maleLabel': 'Male',
                 'femaleLabel': 'Female',
-                'educationLabel': 'Education:',
+                'educationLabel': 'Education',
                 'lkgLabel': 'LKG/UKG',
                 'sslcLabel': 'SSLC',
                 'plus2Label': '+2',
                 'degreeLabel': 'Degree',
                 'pgLabel': 'PG',
                 'phdLabel': 'PHD',
-                'gfLabel': 'Grand Father\'s name:',
+                'gfLabel': 'Related to',
                 'gfMammuLabel': 'Mammu Haji',
-                'gfWriteLabel': 'Write your Grand Father\'s name',
-                'gmLabel': 'Grand Mother\'s name:',
+                'gfMohideenLabel': 'Mohideenkutty (Peechi Master)',
+                'gfWriteLabel': 'Others',
+                'gmLabel': 'Related to:',
                 'gmFathimaLabel': 'Fathimakutty',
-                'gmWriteLabel': 'Write your Grand Mother\'s name',
-                'familyLabel': 'Family name:',
+                'gmWriteLabel': 'Others',
+                'familyLabel': 'Family name',
                 'familyAnapaddikalLabel': 'Anapaddikal Family',
                 'familyWriteLabel': 'Write your Family name',
-                'addressLabel': 'Address:',
+                'phoneLabel': 'Phone number',
+                'employmentLabel': 'Employment (Company)',
+                'addressLabel': 'Address',
                 'submitButton': 'Submit',
                 'footer': 'If you have any other personal urgent matters, please feel free to contact us at',
                 'pictureError': 'Please upload a picture.',
@@ -92,89 +94,93 @@ document.addEventListener('DOMContentLoaded', function () {
             },
             'malayalam': {
                 'title': 'ആനപ്പടിക്കൽ കുടുംബം <br> മീറ്റ് 2024',
-                'uploadText': 'ചിത്രം അപ്ലോഡ് ചെയ്യുക:',
-                'nameLabel': 'പേര്:',
-                'genderLabel': 'ലിംഗഭേദം:',
-                'ageLabel': 'പ്രായം:',
+                'uploadText': 'ചിത്രം അപ്ഡേറ്റ് ചെയ്യുക',
+                'nameLabel': 'പേര്',
+                'genderLabel': 'ലിംഗഭേദം',
+                'ageLabel': 'പ്രായം',
                 'maleLabel': 'പുരുഷൻ',
                 'femaleLabel': 'സ്ത്രീ',
-                'educationLabel': 'വിദ്യാഭ്യാസം:',
+                'educationLabel': 'വിദ്യാഭ്യാസം',
                 'lkgLabel': 'എൽകെജി/യുകെജി',
                 'sslcLabel': 'എസ്‌എസ്എൽസി',
                 'plus2Label': '+2',
                 'degreeLabel': 'ഡിഗ്രി',
                 'pgLabel': 'പിജി',
                 'phdLabel': 'പി‌എച്ച്‌ഡി',
-                'gfLabel': 'മുത്തച്ഛൻ്റെ പേര്:',
+                'gfLabel': 'ബന്ധപ്പെട്ടത്',
                 'gfMammuLabel': 'മമ്മു ഹാജി',
-                'gfWriteLabel': 'താങ്കളുടെ മുത്തച്ഛൻ്റെ പേരെഴുത്തുക',
-                'gmLabel': 'മുത്തശ്ശിയുടെ പേര്:',
+                'gfMohideenLabel': 'മൊഹിദീൻകുട്ടി (പീച്ചി മാസ്റ്റർ)',
+                'gfWriteLabel': 'മറ്റുള്ളവർ',
+                'gmLabel': 'ബന്ധപ്പെട്ടത്:',
                 'gmFathimaLabel': 'ഫാത്തിമകുട്ടി',
-                'gmWriteLabel': 'താങ്കളുടെ മുത്തശ്ശിയുടെ പേര് എഴുതുക',
-                'familyLabel': 'കുടുംബത്തിന്റെ പേര്:',
+                'gmWriteLabel': 'മറ്റുള്ളവർ',
+                'familyLabel': 'കുടുംബ പേര്',
                 'familyAnapaddikalLabel': 'ആനപ്പടിക്കൽ കുടുംബം',
-                'familyWriteLabel': 'താങ്കളുടെ കുടുംബത്തിന്റെ പേര് എഴുതുക',
-                'addressLabel': 'വിലാസം:',
+                'familyWriteLabel': 'നിങ്ങളുടെ കുടുംബത്തിന്റെ പേര് എഴുതുക',
+                'phoneLabel': 'ഫോൺ നമ്പർ',
+                'employmentLabel': 'തൊഴിൽ (കമ്പനി)',
+                'addressLabel': 'വിലാസം',
                 'submitButton': 'സമർപ്പിക്കുക',
-                'footer': 'നിങ്ങൾക് വ്യക്തിപരമായ മറ്റെന്തെങ്കിലും ആവിശ്യം ഉണ്ടെങ്കിൽ ദയവായി ഞങ്ങളെ ബന്ധപെടുക',
-                'pictureError': 'ഒരു ചിത്രം അപ്ലോഡ് ചെയ്യുക',
+                'footer': 'നിങ്ങൾക്ക് വ്യക്തിപരമായ മറ്റെന്തെങ്കിലും അടിയന്തര കാര്യങ്ങൾ ഉണ്ടെങ്കിൽ, ദയവായി ഞങ്ങളെ ബന്ധപ്പെടുക',
+                'pictureError': 'ഒരു ചിത്രം അപ്ലോഡ് ചെയ്യുക.',
                 'modalText': 'വിജയകരമായി സമർപ്പിച്ചു',
             }
         };
 
         var newLangData = langData[newLang];
-        var titleElement = document.getElementById('title');
-        titleElement.innerHTML = newLangData.title; // Use innerHTML to render <br> tag
 
-        document.getElementById('uploadText').textContent = newLangData.uploadText;
-        document.getElementById('nameLabel').textContent = newLangData.nameLabel;
-        document.getElementById('ageLabel').textContent = newLangData.ageLabel;
-        document.getElementById('maleLabel').textContent = newLangData.maleLabel;
-        document.getElementById('femaleLabel').textContent = newLangData.femaleLabel;
-        document.getElementById('educationLabel').textContent = newLangData.educationLabel;
-        document.getElementById('genderLabel').textContent = newLangData.genderLabel;
-        document.getElementById('lkgLabel').textContent = newLangData.lkgLabel;
-        document.getElementById('sslcLabel').textContent = newLangData.sslcLabel;
-        document.getElementById('plus2Label').textContent = newLangData.plus2Label;
-        document.getElementById('degreeLabel').textContent = newLangData.degreeLabel;
-        document.getElementById('pgLabel').textContent = newLangData.pgLabel;
-        document.getElementById('phdLabel').textContent = newLangData.phdLabel;
-        document.getElementById('gfLabel').textContent = newLangData.gfLabel;
-        document.getElementById('gfMammuLabel').textContent = newLangData.gfMammuLabel;
-        document.getElementById('gfWriteLabel').textContent = newLangData.gfWriteLabel;
-        document.getElementById('gmLabel').textContent = newLangData.gmLabel;
-        document.getElementById('gmFathimaLabel').textContent = newLangData.gmFathimaLabel;
-        document.getElementById('gmWriteLabel').textContent = newLangData.gmWriteLabel;
-        document.getElementById('familyLabel').textContent = newLangData.familyLabel;
-        document.getElementById('familyAnapaddikalLabel').textContent = newLangData.familyAnapaddikalLabel;
-        document.getElementById('familyWriteLabel').textContent = newLangData.familyWriteLabel;
-        document.getElementById('addressLabel').textContent = newLangData.addressLabel;
-        document.getElementById('submitButton').textContent = newLangData.submitButton;
-        document.getElementById('footer').textContent = newLangData.footer;
-        document.getElementById('pictureError').textContent = newLangData.pictureError;
+        // Function to update text content of an element if it exists
+        function updateTextContent(id, text) {
+            var element = document.getElementById(id);
+            if (element) {
+                element.textContent = text;
+            }
+        }
+
+        // Function to update innerHTML of an element if it exists
+        function updateInnerHTML(id, html) {
+            var element = document.getElementById(id);
+            if (element) {
+                element.innerHTML = html;
+            }
+        }
+
+        // Update all text contents
+        updateInnerHTML('title', newLangData.title);
+        updateTextContent('uploadText', newLangData.uploadText);
+        updateTextContent('nameLabel', newLangData.nameLabel);
+        updateTextContent('ageLabel', newLangData.ageLabel);
+        updateTextContent('genderLabel', newLangData.genderLabel);
+        updateTextContent('maleLabel', newLangData.maleLabel);
+        updateTextContent('femaleLabel', newLangData.femaleLabel);
+        updateTextContent('educationLabel', newLangData.educationLabel);
+        updateTextContent('lkgLabel', newLangData.lkgLabel);
+        updateTextContent('sslcLabel', newLangData.sslcLabel);
+        updateTextContent('plus2Label', newLangData.plus2Label);
+        updateTextContent('degreeLabel', newLangData.degreeLabel);
+        updateTextContent('pgLabel', newLangData.pgLabel);
+        updateTextContent('phdLabel', newLangData.phdLabel);
+        updateTextContent('gfLabel', newLangData.gfLabel);
+        updateTextContent('gfMammuLabel', newLangData.gfMammuLabel);
+        updateTextContent('gfMohideenLabel', newLangData.gfMohideenLabel);
+        updateTextContent('gfWriteLabel', newLangData.gfWriteLabel);
+        updateTextContent('gmLabel', newLangData.gmLabel);
+        updateTextContent('gmFathimaLabel', newLangData.gmFathimaLabel);
+        updateTextContent('gmWriteLabel', newLangData.gmWriteLabel);
+        updateTextContent('familyLabel', newLangData.familyLabel);
+        updateTextContent('familyAnapaddikalLabel', newLangData.familyAnapaddikalLabel);
+        updateTextContent('familyWriteLabel', newLangData.familyWriteLabel);
+        updateTextContent('phoneLabel', newLangData.phoneLabel);
+        updateTextContent('employmentLabel', newLangData.employmentLabel);
+        updateTextContent('addressLabel', newLangData.addressLabel);
+        updateTextContent('submitButton', newLangData.submitButton);
+        updateTextContent('footer', newLangData.footer);
+        updateTextContent('pictureError', newLangData.pictureError);
+        updateTextContent('modalText', newLangData.modalText);
 
         this.src = `/public/assets/${newLang}.png`;
+
+        // Update the hidden language input
+        document.getElementById('currentLanguage').value = newLang === 'english' ? 'en' : 'ml';
     });
-
-
-    const otherFields = ['grandFather', 'grandMother', 'family'];
-    otherFields.forEach(field => {
-        const radioInputs = document.querySelectorAll(`input[name="${field}"]`);
-        const textInput = document.getElementById(`${field}Name`);
-
-        radioInputs.forEach(input => {
-            input.addEventListener('change', function () {
-                if (this.value === 'other') {
-                    textInput.classList.remove('hidden');
-                    textInput.required = true;
-                } else {
-                    textInput.classList.add('hidden');
-                    textInput.required = false;
-                    textInput.value = ''; // Clear the input when not selected
-                }
-            });
-        });
-    });
-
 });
-

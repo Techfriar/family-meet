@@ -55,6 +55,7 @@ body {
 
     .upload-text {
         font-size: 16px !important;
+        text-decoration: underline !important; 
     }
 
     .float-right-custom {
@@ -93,6 +94,10 @@ body {
         padding-left: 7em !important;
         padding-right: 7em !important;
         padding-bottom: 1rem !important;
+    }
+
+    .upload-text {
+        text-decoration: underline !important; 
     }
 
     .cursor {
