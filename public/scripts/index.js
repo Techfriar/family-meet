@@ -111,7 +111,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 'gfMammuLabel': 'മമ്മു ഹാജി',
                 'gfMohideenLabel': 'മൊഹിദീൻകുട്ടി (പീച്ചി മാഷ്)',
                 'gfWriteLabel': 'മറ്റുള്ളവർ',
-                'gmLabel': 'കുടുംബവുമായുള്ള ബന്ധം:',
+                'gmLabel': 'കുടുംബവുമായുള്ള ബന്ധം',
                 'gmFathimaLabel': 'ഫാത്തിമകുട്ടി',
                 'gmWriteLabel': 'മറ്റുള്ളവർ',
                 'familyLabel': 'കുടുംബ പേര്',
